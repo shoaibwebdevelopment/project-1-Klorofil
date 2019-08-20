@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
+
+<head>
+	<title>Registration</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="assets/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box " style ="height: 560px;">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo">
+								</div>
+								<p class="lead">Register to your account</p>
+							</div>
+							<form class="form-auth-small" action="" method="POST">
+								<div class="form-group">
+									<label for="name" class="control-label sr-only">Name</label>
+									<input type="text" class="form-control" placeholder="Type Your Name" required
+										autofocus id="name">
+
+								</div>
+								<div class="form-group">
+									<label for="email" class="control-label sr-only">Email</label>
+									<input type="password" class="form-control" name="password"
+										placeholder="Type Your Email" required id="password">
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="control-label sr-only">Password</label>
+									<input type="password" class="form-control" name="password"
+										placeholder="Type Your password" required id="password">
+								</div>
+								<div class="form-group">
+									<label for="confirmpassword" class="control-label sr-only">Confirm Password</label>
+									<input type="password" class="form-control" name="password"
+										placeholder="Type Your Confirm Password" required id="password">
+								</div>
+								<div class="form-group">
+									<label for="mobile" class="control-label sr-only">Mobile</label>
+									<input type="mobile" class="form-control" name="mobile"
+										placeholder="Type Your Mobile Number" required id="mobile">
+								</div>
+								<div class="form-group">
+										<label for="university" class="control-label sr-only">University Name</label>
+										<input type="text" class="form-control" name="university"
+											placeholder="Type Your University Name" required id="university">
+									</div>
+								
+
+
+								<div class="form-group clearfix">
+									<label class="fancy-checkbox element-left">
+										<input type="checkbox" name="remember" id="remember">
+										<span>Remember me</span>
+									</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+								<div class="bottom">
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="">Forgot
+											password?</a></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h1 class="heading">Free Bootstrap dashboard template</h1>
+							<p>by The Develovers</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END WRAPPER -->
+</body>
+
+</html>
