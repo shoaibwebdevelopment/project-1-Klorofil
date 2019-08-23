@@ -1,16 +1,9 @@
 
 <?php
-
- include 'database/connection.php';
- use PHPMailer\PHPMailer\PHPMailer;
- use PHPMailer\PHPMailer\Exception;
- require 'phpmailer/src/Exception.php';
- require 'phpmailer/src/PHPMailer.php';
- require 'phpmailer/src/SMTP.php';
+include 'database/connection.php';
 
 
- 
- $error_name = '';
+$error_name = '';
  $error_email = '';
  $error_password  = '';
  $error_confirm_password  = '';
@@ -24,18 +17,15 @@
  $vkey = '';
 
 
-
-if(isset($_POST['registration'])){
+if(isset($_POST['register'])){
 	$name = mysqli_escape_string($conn, $_POST['name']);
 	$email = mysqli_escape_string($conn, $_POST['email']);
 	$password = mysqli_escape_string($conn, $_POST['password']);
 	$confirmPassword = mysqli_escape_string($conn, $_POST['confirmPassword']);
 	$mobile = mysqli_escape_string($conn, $_POST['mobile']);
-	$university = mysqli_escape_string($conn, $_POST['university']);
-	
-
-	
-  	$email_exist = "SELECT email FROM user WHERE email='$email'";
+    $university = mysqli_escape_string($conn, $_POST['university']);
+    
+    $email_exist = "SELECT id FROM user WHERE email='$email'";
   	$query = mysqli_query($conn, $email_exist);
 
   	 if(mysqli_num_rows($query) > 0){
@@ -91,66 +81,13 @@ if(isset($_POST['registration'])){
 		$pwd = "Your confirm password does not match !";
 	  }
 
-	  
-
-	  else {
-		  $password = md5($password);
-		  $vkey = md5(time().$email); // Encrypted value
-		  $sql = "INSERT INTO user(name, email, password, mobile, university, v_key, v_status) VALUES ('$name', '$email', '$password', '$mobile', '$university', '$vkey', 0)";
-		  $query = mysqli_query($conn, $sql);
-
-		if($query){
-
-			$mail = new PHPMailer;
-			$mail->isSMTP();
-			$mail ->HOST = "smtp.gmail.com";
-			$mail ->SMTPAuth = true;
-			$mail ->Username = "msasylbd1971@gmail.com";
-			$mail ->Password = "eshikhonproject1#";
-			$mail ->SMTPSecure = "tls";
-			$mail ->Port = 587;
-			$mail ->From = "msasylbd1971@gmail.com";
-			$mail ->FromName = "Shoaib";
-			$mail ->addAddress($email, $name = '');
-			$mail ->isHTML(true);
-			$mail ->Subject = "Email verification from shoaibWebdevelopmentSite";
-			$mail ->Body = "<a href ='http://localhost/Dashboard-template-master/verify.php?vkey=$vkey'>Click this activation link.</a>";
-			
-			if (!$mail->send()) {
-
-				echo "Mailer Error".$mail->ErrorInfo;
-
-			}
-
-			else {
-				 echo "<script> alert('verification has been sent successfully')</script>";
-			}
-
-			header("location: success.php");
-			
-			
-
-		}
-
-		
 
 
-		else {
-
-			echo mysqli_error($conn);
-		}
-
-
-	  }
-
-
-
-	 
-	 
-	}
-
-
+}
 ?>
+
+
+
 
 
 
@@ -175,7 +112,7 @@ if(isset($_POST['registration'])){
 		
 		
 							</div>
-							<form class="form-auth-small" action="register.php" method="POST">
+							<form class="form-auth-small" action="" method="POST">
 								<div class="form-group">
 									<label for="name" class="control-label sr-only">Name</label>
 									<input type="text" class="form-control" placeholder="Type Your Name" name ="name" autofocus id="name">
@@ -228,7 +165,7 @@ if(isset($_POST['registration'])){
 										<span>Remember me</span>
 									</label>
 								</div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block" name ="registration">Ristration</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block" name ="register">Register</button>
 								<div class="bottom">
 									<span class="helper-text"><i class="fa fa-lock"></i> <a href="">Forgot
 											password?</a></span>
