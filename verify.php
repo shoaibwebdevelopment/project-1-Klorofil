@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Verification Messages</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.coif (!$mail->send()) {m/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<style>
-	.bs-example{
-    	margin: 20px;
+<?php
+    include 'database/connection.php';  
+    if(isset($_GET['vkey'])){
+        /* Get the verification key and match with database verification key */
+        $vkey = $_GET['vkey'];
+        $sql = "SELECT v_key,v_status FROM user WHERE v_status = 0 AND v_key='$vkey' LIMIT 1";
+        $query = mysqli_query($conn,$sql);
+        if(mysqli_num_rows($query)>0){
+            $sql = "UPDATE user SET v_status = 1 WHERE v_key='$vkey' LIMIT 1";
+            $query = mysqli_query($conn,$sql);
+            if($query){
+                echo '<div class="bs-example"> 
+                        <div class="alert alert-warning alert-dismissible fade show">
+                            <strong>Success</strong> Please Check Your Email To complete the registration
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        </div>
+                    </div>';
+            }
+        }
     }
-</style>
-</head>
-<body>
-<div class="bs-example bg-success"> 
-    <!-- Success Alert -->
-    <div class="alert alert-success alert-dismissible fade show bg-success">
-        <strong>Vierified!</strong> please check your email and click the activation code.
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>
-    
-</div>
-</body>
-</html>                            
+?>

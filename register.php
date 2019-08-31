@@ -84,6 +84,7 @@ if(isset($_POST['registration'])){
 	  }
 	 
 
+	  
 	
 
 	  else if($password!= $confirmPassword){
@@ -95,62 +96,59 @@ if(isset($_POST['registration'])){
 
 	  else {
 		  $password = md5($password);
-		  $vkey = md5(time().$email); // Encrypted value
+		  $vkey = md5(md5(time()).$email); // Encrypted value
 		  $sql = "INSERT INTO user(name, email, password, mobile, university, v_key, v_status) VALUES ('$name', '$email', '$password', '$mobile', '$university', '$vkey', 0)";
 		  $query = mysqli_query($conn, $sql);
 
-		if($query){
-
+		  if($query){
 			$mail = new PHPMailer;
+			//* set phpmailer to use SMTP */
 			$mail->isSMTP();
-			$mail ->HOST = "smtp.gmail.com";
-			$mail ->SMTPAuth = true;
-			$mail ->Username = "msasylbd1971@gmail.com";
-			$mail ->Password = "eshikhonproject1#";
-			$mail ->SMTPSecure = "tls";
-			$mail ->Port = 587;
-			$mail ->From = "msasylbd1971@gmail.com";
-			$mail ->FromName = "Shoaib";
-			$mail ->addAddress($email, $name = '');
-			$mail ->isHTML(true);
-			$mail ->Subject = "Email verification from shoaibWebdevelopmentSite";
-			$mail ->Body = "<a href ='http://localhost/Dashboard-template-master/verify.php?vkey=$vkey'>Click this activation link.</a>";
+			/* smtp host */
+			$mail->Host = "smtp.gmail.com";
+
+			$mail->SMTPAuth = true;
 			
-			if (!$mail->send()) {
+			/* Provide User Name and Password as your email address(FromEmail) */
+			$mail->Username = "msasylbd1971@gmail.com";
 
-				echo "Mailer Error".$mail->ErrorInfo;
+			$mail->Password = "eshikhonproject1#";
 
+			$mail->SMTPSecure ="tls";
+
+			$mail->Port= 587;
+
+			$mail->From = "msasylbd1971@gamil.com";
+
+			$mail->FromName = "Salman";
+
+			$mail->addAddress($email,"Salman");
+
+			$mail->isHTML(true);
+			/* Set Subject and messages of body */
+			$mail->Subject = "Email Verification From eshikhonBlog";
+
+			$mail->Body = "<a href='http://localhost/Dashboard-template-master/verify.php?vkey=$vkey'>Click This Activation Link</a>";
+
+			if(!$mail->send()){
+				echo "Mailer Error". $mail->ErrorInfo;
+			}
+			else{
+				echo "<script>alert('Verification Has been Sent Successfully')</script>";
 			}
 
-			else {
-				 echo "<script> alert('verification has been sent successfully')</script>";
-			}
-
-			header("location: success.php");
-			
-			
-
+			header('location:success.php');
 		}
-
-		
-
-
-		else {
-
+		else{
 			echo mysqli_error($conn);
-		}
+		}	
 
-
-	  }
-
-
-
-	 
-	 
 	}
-
+}
 
 ?>
+
+
 
 
 
